@@ -4,6 +4,8 @@ const router = express.Router();
 
 router.post('/create', requestController.request);
 router.get('/get', requestController.getAll);
+router.get('/cities', requestController.getCities);
+
 router
   .route('/:id')
   .patch(requestController.update)

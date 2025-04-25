@@ -23,6 +23,8 @@ exports.request = async (req, res) => {
   });
 };
 
+exports.getCities = async (req, res) => {};
+
 exports.getAll = factory.getAll(Request);
 exports.update = factory.update(Request);
 exports.delete = factory.delete(Request);

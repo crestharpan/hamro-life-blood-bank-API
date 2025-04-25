@@ -17,5 +17,6 @@ app.use(morgan('dev'));
 app.use('/api/V1/admin/bloodrequests', userRequestRouter);
 app.use('/api/V1/admin/bloodBank', bloodBankRouter);
 app.use('/api/V1/admin/bloodDonor', bloodDonorRouter);
+app.use('/api/V1/admin/getCities', userRequestRouter);
 
 module.exports = app;
