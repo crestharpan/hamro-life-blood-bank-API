@@ -1,4 +1,5 @@
 const Donor = require('../models/bloodDonorModel');
+const factory = require('./handlerFactory');
 
 exports.add = async (req, res) => {
   const newBloodDonor = await Donor.create({
@@ -23,3 +24,8 @@ exports.add = async (req, res) => {
     newBloodDonor,
   });
 };
+
+exports.getAll = factory.getAll(Donor);
+exports.getOne = factory.getOne(Donor);
+exports.update = factory.update(Donor);
+exports.delete = factory.delete(Donor);
