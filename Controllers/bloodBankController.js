@@ -1,4 +1,5 @@
 const bloodBank = require('../models/bloodBankModel');
+const factory = require('./handlerFactory');
 exports.add = async (req, res) => {
   const newBloodBank = await bloodBank.create({
     bloodBankName: req.body.bloodBankName,
@@ -15,3 +16,7 @@ exports.add = async (req, res) => {
     newBloodBank,
   });
 };
+exports.getAll = factory.getAll(bloodBank);
+exports.getOne = factory.getOne(bloodBank);
+exports.update = factory.update(bloodBank);
+exports.delete = factory.delete(bloodBank);
