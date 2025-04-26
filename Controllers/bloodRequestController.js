@@ -23,7 +23,29 @@ exports.request = async (req, res) => {
   });
 };
 
-exports.getCities = async (req, res) => {};
+exports.getCities = async (req, res) => {
+  const doc = await Request.aggregate([
+    {
+      $group: {
+        _id: {
+          city: '$location.city',
+          province: '$location.province',
+        },
+      },
+    },
+    {
+      $project: {
+        _id: 0,
+        city: '$_id.city',
+        province: '$_id.province',
+      },
+    },
+  ]);
+  res.status(200).json({
+    status: 'Success',
+    doc,
+  });
+};
 
 exports.getAll = factory.getAll(Request);
 exports.update = factory.update(Request);
