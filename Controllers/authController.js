@@ -1,5 +1,7 @@
 const Admin = require('../models/adminModel');
 const jwt = require('jsonwebtoken');
+const { promisify } = require('utils');
+
 const createNewToken = (admin, statusCode, res) => {
   const token = jwt.sign({ id: admin.id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
@@ -54,4 +56,28 @@ exports.logout = async (req, res) => {
   res.status(200).json({
     status: 'success',
   });
+};
+
+exports.protect = async (req, res) => {
+  let token;
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    token = req.headers.authorization.split(' ')[0];
+  } else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
+  }
+
+  if (!token) return;
+  //Verifying the Token
+  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+  const admin = await Admin.findOne({ $_id: decoded.id });
+
+  if (!admin) {
+    console.log('No admin found');
+    return;
+  }
+
+  req.user = admin;
 };
