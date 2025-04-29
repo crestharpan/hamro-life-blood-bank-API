@@ -16,6 +16,7 @@ const adminSchema = mongoose.Schema({
     type: String,
     minlength: 6,
     maxlength: 11,
+    select: false,
   },
   passwordChangedAt: Date,
   passwordResetToken: String,
@@ -31,6 +32,15 @@ adminSchema.pre('save', async function (next) {
 
   next();
 });
+
+//INSTANCE METHOD TO COMPARE THE PASSWORD
+adminSchema.methods.checkPassword = async function (
+  candidatePassword,
+  correctPassword
+) {
+  //RETURNS EITHER TRUE OR FALSE
+  return await bcrypt.compare(candidatePassword, correctPassword);
+};
 
 const admin = mongoose.model('admin', adminSchema);
 module.exports = admin;
