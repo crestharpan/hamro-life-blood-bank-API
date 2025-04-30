@@ -16,7 +16,7 @@ const createNewToken = (admin, statusCode, res) => {
   res.cookie('jwt', token, cookieOptions);
 
   //REMOVE PASSWORD FROM THE OUTPUT
-  user.password = undefined;
+  admin.password = undefined;
 
   res.status(statusCode).json({
     status: 'success',
@@ -45,7 +45,7 @@ exports.login = async (req, res) => {
   if (!admin || !(await admin.checkPassword(password, admin.password))) {
     return;
   }
-  createNewToken(admin, statusCode, res);
+  createNewToken(admin, 201, res);
 };
 
 exports.logout = async (req, res) => {
@@ -72,12 +72,12 @@ exports.protect = async (req, res) => {
   if (!token) return;
   //Verifying the Token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-  const admin = await Admin.findOne({ $_id: decoded.id });
+  const currAdmin = await Admin.findOne({ $_id: decoded.id });
 
   if (!admin) {
     console.log('No admin found');
     return;
   }
 
-  req.user = admin;
+  req.user = currAdmin;
 };
