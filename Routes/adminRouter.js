@@ -12,8 +12,11 @@ const router = express.Router();
 
 router.post('/signup', authController.adminSignup);
 router.post('/login', authController.login);
-router.get('/logout', authController.logout);
 
+//PROTECTING OTHER ROUTES
+router.use(authController.protect);
+
+router.get('/logout', authController.logout);
 /////////////////////BLOOD REQUESTS ROUTES ///////
 
 router

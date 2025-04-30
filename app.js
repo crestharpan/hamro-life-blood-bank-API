@@ -4,9 +4,6 @@ const path = require('path');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const adminRouter = require('./Routes/adminRouter');
-const userRequestRouter = require('./Routes/userRequestRouter');
-const bloodBankRouter = require('./Routes/bloodBankRouter');
-const bloodDonorRouter = require('./Routes/bloodDonorRouter');
 
 const cors = require('cors');
 

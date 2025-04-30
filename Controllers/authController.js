@@ -58,13 +58,14 @@ exports.logout = async (req, res) => {
   });
 };
 
-exports.protect = async (req, res) => {
+exports.protect = async (req, res, next) => {
   let token;
+
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
   ) {
-    token = req.headers.authorization.split(' ')[0];
+    token = req.headers.authorization.split(' ')[1];
   } else if (req.cookies.jwt) {
     token = req.cookies.jwt;
   }
@@ -72,12 +73,14 @@ exports.protect = async (req, res) => {
   if (!token) return;
   //Verifying the Token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-  const currAdmin = await Admin.findOne({ $_id: decoded.id });
 
-  if (!admin) {
+  const currAdmin = await Admin.findOne({ _id: decoded.id });
+
+  if (!currAdmin) {
     console.log('No admin found');
     return;
   }
 
   req.user = currAdmin;
+  next();
 };
