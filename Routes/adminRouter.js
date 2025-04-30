@@ -21,8 +21,6 @@ router
   .post(requestController.request)
   .get(requestController.getAll);
 
-router.get('/bloodRequests/cities', requestController.getCities);
-
 router
   .route('/bloodrequests/:id')
   .patch(requestController.update)
@@ -53,4 +51,7 @@ router
   .patch(bloodDonorController.update)
   .delete(bloodDonorController.delete);
 
+////// CITY ROUTES //////
+
+router.get('/cities', requestController.getCities);
 module.exports = router;
