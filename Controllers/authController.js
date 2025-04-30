@@ -1,6 +1,6 @@
 const Admin = require('../models/adminModel');
 const jwt = require('jsonwebtoken');
-const { promisify } = require('utils');
+const { promisify } = require('util');
 
 const createNewToken = (admin, statusCode, res) => {
   const token = jwt.sign({ id: admin.id }, process.env.JWT_SECRET, {
