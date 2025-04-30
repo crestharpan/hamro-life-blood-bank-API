@@ -14,11 +14,7 @@ app.use(bodyParser.json());
 //IT WILL RETURN REQ HEADER
 app.use(morgan('dev'));
 
-//ROUTES
+//ROUTE FOR THE ADMIN
 app.use('/api/V1/admin', adminRouter);
-app.use('/api/V1/admin/bloodrequests', userRequestRouter);
-app.use('/api/V1/admin/bloodBank', bloodBankRouter);
-app.use('/api/V1/admin/bloodDonor', bloodDonorRouter);
-app.use('/api/V1/admin/getCities', userRequestRouter);
 
 module.exports = app;
