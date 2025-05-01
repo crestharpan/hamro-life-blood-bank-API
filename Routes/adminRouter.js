@@ -1,11 +1,8 @@
 const express = require('express');
 
 const requestController = require('../Controllers/bloodRequestController');
-
 const bloodBankController = require('../Controllers/bloodBankController');
-
 const bloodDonorController = require('../Controllers/bloodDonorController');
-
 const authController = require('../Controllers/authController');
 
 const router = express.Router();
@@ -15,6 +12,8 @@ router.post('/login', authController.login);
 
 //PROTECTING OTHER ROUTES
 router.use(authController.protect);
+
+router.patch('/updatePassword', authController.updatePassword);
 
 router.get('/logout', authController.logout);
 /////////////////////BLOOD REQUESTS ROUTES ///////

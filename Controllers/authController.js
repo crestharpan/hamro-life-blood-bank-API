@@ -84,3 +84,23 @@ exports.protect = async (req, res, next) => {
   req.user = currAdmin;
   next();
 };
+
+//UPDATE PASSWORD OF THE ADMIN BY SELF
+
+exports.updatePassword = async (req, res) => {
+  const admin = await Admin.findById(req.user.id).select('+password');
+
+  if (!admin) return;
+
+  //CHECK IF THE PASSWORD MATCHES WITH THE CORRECT PASSWORD OR NOT
+  const currentPassword = req.body.currentPassword;
+  if (admin.checkPassword(currentPassword, admin.password) === false) {
+    console.log("The password didn't match");
+    return;
+  }
+  //IF EVERYTHING IS CORRECT THEN UPDATE THE PASSWORD AND SAVE
+  admin.password = req.body.newPassword;
+  await admin.save(); //THE SAVE() FUNCTION RETURNS A PROMISE SO HAVE TO AWAIT
+
+  createNewToken(admin, 201, res);
+};
