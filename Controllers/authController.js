@@ -1,6 +1,7 @@
 const Admin = require('../models/adminModel');
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
+const Email = require('../utils/email');
 
 const createNewToken = (admin, statusCode, res) => {
   const token = jwt.sign({ id: admin.id }, process.env.JWT_SECRET, {
@@ -103,4 +104,34 @@ exports.updatePassword = async (req, res) => {
   await admin.save(); //THE SAVE() FUNCTION RETURNS A PROMISE SO HAVE TO AWAIT
 
   createNewToken(admin, 201, res);
+};
+
+exports.forgotPassword = async (req, res) => {
+  const admin = await Admin.findOne({ email: req.body.email });
+  if (!admin) {
+    console.log('admin not found');
+    return;
+  }
+  //CREATE A PASSWORD RESET URL
+  const resetToken = admin.createPasswordResetToken();
+  await admin.save({ validateBeforeSave: false });
+
+  //3) SEND THE RESETTOKEN TO THE USER
+  const resetUrl = `${req.protocol}://${req.get(
+    'host'
+  )}/api/V1/users/resetPassword/${resetToken}`;
+
+  //SEND THE URL TO EMAIL
+  try {
+    await new Email(admin, resetUrl).sendPasswordReset();
+    res.status(200).json({
+      status: 'Success',
+      message: 'Email sent successfully',
+    });
+  } catch (err) {
+    admin.PasswordResetToken = undefined;
+    admin.PasswordResetExpires = undefined;
+    await admin.save({ validateBeforeSave: false });
+    console.log('error while sending the mail', err.message);
+  }
 };

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 
 const adminSchema = mongoose.Schema({
   fullName: {
@@ -40,6 +41,18 @@ adminSchema.methods.checkPassword = async function (
 ) {
   //RETURNS EITHER TRUE OR FALSE
   return await bcrypt.compare(candidatePassword, correctPassword);
+};
+
+//INSTANCE METHOD TO CREATE THE RESET TOKEN
+adminSchema.methods.createPasswordResetToken = function () {
+  const resetToken = crypto.randomBytes(32).toString('hex');
+  this.passwordResetToken = crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+  this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+
+  return resetToken;
 };
 
 const admin = mongoose.model('admin', adminSchema);

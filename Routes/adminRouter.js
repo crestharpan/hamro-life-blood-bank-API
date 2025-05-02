@@ -9,6 +9,7 @@ const router = express.Router();
 
 router.post('/signup', authController.adminSignup);
 router.post('/login', authController.login);
+router.post('/forgotPassword', authController.forgotPassword);
 
 //PROTECTING OTHER ROUTES
 router.use(authController.protect);

@@ -12,12 +12,12 @@ module.exports = class Email {
   }
 
   newTransport() {
-    nodemailer.createTransport({
+    return nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: process.env.EMAIL_PORT,
       auth: {
-        user: process.env.USERNAME_EMAIL,
-        pass: process.env.PASSWORD_EMAIL,
+        user: process.env.EMAIL_USERNAME,
+        pass: process.env.EMAIL_PASSWORD,
       },
     });
   }
@@ -26,6 +26,7 @@ module.exports = class Email {
     const emailOptions = {
       from: this.from,
       to: this.to,
+      text: `Hello ${this.firstName},\n\nYou requested a password reset. Please click the link below:\n${this.url}\n\nIf you did not request this, please ignore this email.\n\n- Hamro Blood Bank`,
       subject,
     };
     await this.newTransport().sendMail(emailOptions);
