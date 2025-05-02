@@ -2,6 +2,7 @@ const Admin = require('../models/adminModel');
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
 const Email = require('../utils/email');
+const crypto = require('crypto');
 
 const createNewToken = (admin, statusCode, res) => {
   const token = jwt.sign({ id: admin.id }, process.env.JWT_SECRET, {
@@ -119,7 +120,7 @@ exports.forgotPassword = async (req, res) => {
   //3) SEND THE RESETTOKEN TO THE USER
   const resetUrl = `${req.protocol}://${req.get(
     'host'
-  )}/api/V1/users/resetPassword/${resetToken}`;
+  )}/api/V1/admin/resetPassword/${resetToken}`;
 
   //SEND THE URL TO EMAIL
   try {
@@ -134,4 +135,32 @@ exports.forgotPassword = async (req, res) => {
     await admin.save({ validateBeforeSave: false });
     console.log('error while sending the mail', err.message);
   }
+};
+
+//RESET THE PASSWORD
+
+exports.resetPassword = async (req, res) => {
+  //COMAPRE THE TOKEN
+  const hashedToken = crypto
+    .createHash('sha256')
+    .update(req.params.token)
+    .digest('hex');
+
+  //RETURN THE ISER BASED ON THE TOKEN AND CHECK IF TOKEN IS EXPIRED OR NOT
+  const admin = await Admin.findOne({
+    passwordResetToken: hashedToken,
+    passwordResetExpires: { $gt: Date.now() },
+  });
+
+  if (!admin) {
+    console.log('Something went wrong!! check the token again or retry');
+    return;
+  }
+
+  admin.password = req.body.newPassword;
+  admin.PasswordResetExpires = undefined;
+  admin.PasswordResetToken = undefined;
+  await admin.save();
+
+  createNewToken(admin, 200, res);
 };
