@@ -1,0 +1,72 @@
+[
+  {
+    "fullName": "Anmol Tamang",
+    "email": "Anmol@gmail.com",
+    "contact": 9807395698,
+    "province": "Bagamti",
+    "city": "Kathmandu",
+    "hospitalAddress": "Bagmati",
+    "hospitalName": "Green peace Aspatal",
+    "bloodGroup": "AB+",
+    "units": 2,
+    "active": "true",
+    "photo": "user3.jpg",
+    "dateOfBirth": "2058-10-02"
+  },
+  {
+    "fullName": "Sita Lama",
+    "email": "sita.lama@example.com",
+    "contact": 9811122334,
+    "province": "Gandaki",
+    "city": "Pokhara",
+    "hospitalAddress": "Lakeside",
+    "hospitalName": "Pokhara Medical Hospital",
+    "bloodGroup": "O+",
+    "units": 1,
+    "active": "false",
+    "photo": "user5.jpg",
+    "dateOfBirth": "2055-06-15"
+  },
+  {
+    "fullName": "Ramesh Shrestha",
+    "email": "ramesh.shr@gmail.com",
+    "contact": 9801234567,
+    "province": "Lumbini",
+    "city": "Butwal",
+    "hospitalAddress": "Traffic Chowk",
+    "hospitalName": "Lumbini Zonal Hospital",
+    "bloodGroup": "A-",
+    "units": 3,
+    "active": "true",
+    "photo": "user1.jpg",
+    "dateOfBirth": "2053-11-25"
+  },
+  {
+    "fullName": "Sunita Rai",
+    "email": "sunita.rai@gmail.com",
+    "contact": 9847654321,
+    "province": "Province 1",
+    "city": "Biratnagar",
+    "hospitalAddress": "Main Road",
+    "hospitalName": "Biratnagar City Hospital",
+    "bloodGroup": "B+",
+    "units": 2,
+    "active": "true",
+    "photo": "user6.jpg",
+    "dateOfBirth": "2057-03-10"
+  },
+  {
+    "fullName": "Dipesh Khadka",
+    "email": "dipesh.kh@email.com",
+    "contact": 9860098765,
+    "province": "Sudurpashchim",
+    "city": "Dhangadhi",
+    "hospitalAddress": "Campus Road",
+    "hospitalName": "Seti Provincial Hospital",
+    "bloodGroup": "AB-",
+    "units": 1,
+    "active": "false",
+    "photo": "user2.jpg",
+    "dateOfBirth": "2056-08-19"
+  }
+]

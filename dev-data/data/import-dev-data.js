@@ -1,7 +1,7 @@
 const fs = require('fs');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const bloodBank = require('../../models/bloodBankModel');
+const Bank = require('../../models/bloodBankModel');
 const Request = require('../../models/requestModel');
 const Donor = require('../../models/bloodDonorModel');
 
@@ -16,22 +16,22 @@ mongoose.connect(Db).then(() => {
 });
 
 //READ FILE FORM TOURS-SIMPLE.JSON
-const tours = JSON.parse(
-  fs.readFileSync('./dev-data/data/tours.json', 'utf-8')
+const bank = JSON.parse(
+  fs.readFileSync('./dev-data/data/bloodBank.json', 'utf-8')
 );
-const users = JSON.parse(
-  fs.readFileSync('./dev-data/data/users.json', 'utf-8')
+const request = JSON.parse(
+  fs.readFileSync('./dev-data/data/bloodRequest.json', 'utf-8')
 );
-const reviews = JSON.parse(
-  fs.readFileSync('./dev-data/data/reviews.json', 'utf-8')
+const donor = JSON.parse(
+  fs.readFileSync('./dev-data/data/bloodDonor.json', 'utf-8')
 );
 
 //IMPORTING FILES TO DATABASE
 const importData = async () => {
   try {
-    await Tour.create(tours);
-    await User.create(users, { validateBeforeSave: false });
-    await Review.create(reviews);
+    await Bank.create(bank);
+    await Donor.create(donor, { validateBeforeSave: false });
+    await Request.create(request);
     console.log('successfully added all the data');
   } catch (err) {
     console.log(err);
@@ -42,9 +42,9 @@ const importData = async () => {
 
 const deleteData = async () => {
   try {
-    await Tour.deleteMany();
-    await User.deleteMany();
-    await Review.deleteMany();
+    await Bank.deleteMany();
+    await Donor.deleteMany();
+    await Request.deleteMany();
     console.log('Deleted all the data');
   } catch (err) {
     console.log(err);
