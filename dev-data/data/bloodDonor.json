@@ -39,7 +39,7 @@
     "bloodGroup": "B+",
     "donorType": "paid",
     "gender": "male",
-    "status": "Inactive"
+    "status": "Not Active"
   },
   {
     "fullName": "Ritika Sharma",
@@ -67,6 +67,6 @@
     "bloodGroup": "O-",
     "donorType": "paid",
     "gender": "male",
-    "status": "Inactive"
+    "status": "Not Active"
   }
 ]

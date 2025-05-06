@@ -21,7 +21,7 @@
     "province": "Lumbini",
     "city": "Butwal",
     "street": "Main Chowk",
-    "status": "Inactive"
+    "status": "Not Active"
   },
   {
     "bloodBankName": "Sewa Blood Donation Center",
@@ -37,6 +37,6 @@
     "province": "Province 1",
     "city": "Biratnagar",
     "street": "Traffic Chowk",
-    "status": "Inactive"
+    "status": "Not Active"
   }
 ]
