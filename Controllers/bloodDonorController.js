@@ -5,7 +5,7 @@ exports.add = async (req, res) => {
   const newBloodDonor = await Donor.create({
     fullName: req.body.fullName,
     contact: req.body.contact,
-    address: {
+    location: {
       province: req.body.province,
       city: req.body.city,
       street: req.body.street,

@@ -25,7 +25,7 @@ const bloodBankSchema = mongoose.Schema({
     type: Number,
     match: /^021\d{6}$/,
   },
-  address: {
+  location: {
     type: locationSchema,
   },
   status: {

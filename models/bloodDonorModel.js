@@ -24,7 +24,7 @@ const bloodDonorSchema = mongoose.Schema({
     type: Number,
     match: /^(97|98)\d{8}$/,
   },
-  address: {
+  location: {
     type: locationSchema,
   },
   habits: [String],

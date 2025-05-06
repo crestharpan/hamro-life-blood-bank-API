@@ -2,41 +2,51 @@
   {
     "bloodBankName": "Green peace Aspatal",
     "contact": "021560263",
-    "province": "Bagmati",
-    "city": "Kathmandu",
-    "street": "Aitport Line",
+    "location": {
+      "province": "Bagmati",
+      "city": "Kathmandu",
+      "street": "Aitport Line"
+    },
     "status": "Active"
   },
   {
     "bloodBankName": "Red Cross Blood Center",
     "contact": "014522335",
-    "province": "Gandaki",
-    "city": "Pokhara",
-    "street": "Lakeside Road",
+    "location": {
+      "province": "Gandaki",
+      "city": "Pokhara",
+      "street": "Lakeside Road"
+    },
     "status": "Active"
   },
   {
     "bloodBankName": "Hope Blood Bank",
     "contact": "061445789",
-    "province": "Lumbini",
-    "city": "Butwal",
-    "street": "Main Chowk",
+    "location": {
+      "province": "Lumbini",
+      "city": "Butwal",
+      "street": "Main Chowk"
+    },
     "status": "Not Active"
   },
   {
     "bloodBankName": "Sewa Blood Donation Center",
     "contact": "051441122",
-    "province": "Province 2",
-    "city": "Birgunj",
-    "street": "Hospital Road",
+    "location": {
+      "province": "Province 2",
+      "city": "Birgunj",
+      "street": "Hospital Road"
+    },
     "status": "Active"
   },
   {
     "bloodBankName": "Lifeline Blood Bank",
     "contact": "023550987",
-    "province": "Province 1",
-    "city": "Biratnagar",
-    "street": "Traffic Chowk",
+    "location": {
+      "province": "Province 1",
+      "city": "Biratnagar",
+      "street": "Traffic Chowk"
+    },
     "status": "Not Active"
   }
 ]

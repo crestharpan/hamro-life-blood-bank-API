@@ -2,6 +2,7 @@ const Request = require('../models/requestModel');
 const factory = require('./handlerFactory');
 
 exports.request = async (req, res) => {
+  console.log(req.body);
   const doc = await Request.create({
     fullName: req.body.fullName,
     email: req.body.email,

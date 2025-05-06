@@ -1,10 +1,12 @@
 [
   {
     "fullName": "Aarav Shrestha",
-    "contact": 9812345678,
-    "province": "koshi",
-    "city": "Biratnagar",
-    "street": "Airport Line",
+    "contact": "9812345678",
+    "location": {
+      "province": "Koshi",
+      "city": "Biratnagar",
+      "street": "Airport Line"
+    },
     "habits": ["Non-smoker", "No alcohol"],
     "lastDonationDate": "2024-12-15",
     "dateOfBirth": "1995-06-12",
@@ -15,10 +17,12 @@
   },
   {
     "fullName": "Sneha Karki",
-    "contact": 9801122334,
-    "province": "bagmati",
-    "city": "Kathmandu",
-    "street": "Baneshwor",
+    "contact": "9801122334",
+    "location": {
+      "province": "Bagmati",
+      "city": "Kathmandu",
+      "street": "Baneshwor"
+    },
     "habits": ["Non-smoker"],
     "lastDonationDate": "2025-01-20",
     "dateOfBirth": "1998-04-25",
@@ -29,10 +33,12 @@
   },
   {
     "fullName": "Bikash Thapa",
-    "contact": 9845123467,
-    "province": "lumbini",
-    "city": "Butwal",
-    "street": "Traffic Chowk",
+    "contact": "9845123467",
+    "location": {
+      "province": "Lumbini",
+      "city": "Butwal",
+      "street": "Traffic Chowk"
+    },
     "habits": ["Occasional alcohol"],
     "lastDonationDate": "2024-11-05",
     "dateOfBirth": "1990-08-30",
@@ -43,10 +49,12 @@
   },
   {
     "fullName": "Ritika Sharma",
-    "contact": 9812233445,
-    "province": "gandaki",
-    "city": "Pokhara",
-    "street": "Lakeside",
+    "contact": "9812233445",
+    "location": {
+      "province": "Gandaki",
+      "city": "Pokhara",
+      "street": "Lakeside"
+    },
     "habits": ["Non-smoker", "No alcohol"],
     "lastDonationDate": "2025-03-10",
     "dateOfBirth": "1996-02-14",
@@ -57,10 +65,12 @@
   },
   {
     "fullName": "Niraj Bhandari",
-    "contact": 9867543210,
-    "province": "madhesh",
-    "city": "Janakpur",
-    "street": "Ramananda Chowk",
+    "contact": "9867543210",
+    "location": {
+      "province": "Madhesh",
+      "city": "Janakpur",
+      "street": "Ramananda Chowk"
+    },
     "habits": ["Smoker"],
     "lastDonationDate": "2024-10-01",
     "dateOfBirth": "1989-12-03",
