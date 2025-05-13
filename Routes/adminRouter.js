@@ -45,12 +45,12 @@ router
 ///////////////// BLOOD DONOR ROUTES ///////////////
 
 router
-  .route('bloodDonor')
+  .route('/bloodDonor')
   .post(bloodDonorController.add)
   .get(bloodDonorController.getAll);
 
 router
-  .route('bloodDonor/:id')
+  .route('/bloodDonor/:id')
   .get(bloodDonorController.getOne)
   .patch(bloodDonorController.update)
   .delete(bloodDonorController.delete);
