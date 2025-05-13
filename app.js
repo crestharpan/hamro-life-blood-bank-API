@@ -26,7 +26,7 @@ app.use(mongoSanitize());
 app.use(xss());
 
 // 5. Routes
-app.use('/api/V1/admin/bloodDonor', adminRouter);
+app.use('/api/V1/admin', adminRouter);
 
 // 6. Only one app.listen()
 const PORT = process.env.PORT || 8000;
