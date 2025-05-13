@@ -2,24 +2,36 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const mongoSantitize = require('express-mongo-sanitize');
+const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
+const cors = require('cors');
 const adminRouter = require('./Routes/adminRouter');
 
-const cors = require('cors');
+// 1. Enable CORS first
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
-app.use(bodyParser.json());
-//IT WILL RETURN REQ HEADER
+// 2. Request logging
 app.use(morgan('dev'));
 
-//DATA SANITIZATION AGAINST NOSQL QUERY INJECTION
-app.use(mongoSantitize());
+// 3. Body parsing middleware (Express built-in)
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-//DATA SANTIZATION AGAINST CROSS-SITE ATTACK
+// 4. Security middleware (AFTER body parsing)
+app.use(mongoSanitize());
 app.use(xss());
 
-//ROUTE FOR THE ADMIN
-app.use('/api/V1/admin', adminRouter);
+// 5. Routes
+app.use('/api/V1/admin/bloodDonor', adminRouter);
+
+// 6. Only one app.listen()
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 module.exports = app;
