@@ -39,7 +39,9 @@ exports.adminSignup = async (req, res) => {
 
 exports.login = async (req, res) => {
   //RETRIEVE THE EMAIL AND PASSWORDS
-  const { email, password } = req.body;
+  console.log(req.body);
+  const email = req.body.username;
+  const password = req.body.password;
 
   if (!email || !password) return;
 
